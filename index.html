@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Expense Tracker</h1>
+            <div class="balance">
+                <h2>Balance</h2>
+                <p id="balance">Rs 0.00</p>
+            </div>
+        </div>
+        
+        <div class="summary">
+            <div class="income">
+                <h3>Income</h3>
+                <p id="income">Rs 0.00</p>
+            </div>
+            <div class="expenses">
+                <h3>Expenses</h3>
+                <p id="expense">Rs 0.00</p>
+            </div>
+        </div>
+
+        <div class="form">
+            <h3>Add Transaction</h3>
+            <form id="transactionForm">
+                <input type="date" id="date" required>
+                <input type="text" id="description" placeholder="Description" required>
+                <input type="number" id="amount" placeholder="Amount" required>
+                <select id="type" required>
+                    <option value="income">Income</option>
+                    <option value="expense">Expense</option>
+                </select>
+                <select id="category" required>
+                    <option value="">Select Category</option>
+                    <option value="cash_in">Cash In</option>
+                    <option value="cash_out">Cash Out</option>
+                    <option value="grocery">Grocery</option>
+                    <option value="travel">Travel</option>
+                    <option value="other">Other</option>
+                </select>
+                <button type="submit">Add Transaction</button>
+            </form>
+        </div>
+
+        <div class="history">
+            <h3>History</h3>
+            <div id="transactionList"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
