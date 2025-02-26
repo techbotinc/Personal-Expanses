@@ -53,7 +53,23 @@
 
         <div class="history">
             <h3>History</h3>
+            <div class="filters">
+                <input type="text" id="searchInput" placeholder="Search transactions..." oninput="updateUI()">
+                <select id="filterType" onchange="updateUI()">
+                    <option value="all">All Types</option>
+                    <option value="income">Income</option>
+                    <option value="expense">Expense</option>
+                </select>
+                <input type="date" id="startDate" onchange="updateUI()" placeholder="Start Date">
+                <input type="date" id="endDate" onchange="updateUI()" placeholder="End Date">
+            </div>
+            <div class="export-section">
+                <button onclick="exportToCSV()" class="export-btn">Export to CSV</button>
+            </div>
             <div id="transactionList"></div>
+        </div>
+        <div class="footer">
+            Powered by <a href="https://wa.me/+923110907679" target="_blank">Nomi</a>
         </div>
     </div>
     <script src="script.js"></script>

@@ -9,23 +9,33 @@
 body {
     background-color: #f5f5f5;
     min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    padding: 20px;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
+    position: relative;
+    height: 100vh;
     width: 100%;
     max-width: 600px;
     background: white;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
     border-radius: 20px;
     padding: 30px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .header {
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 100;
+    padding: 20px;
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
 }
 
 .header h1 {
@@ -116,15 +126,66 @@ button:hover {
     color: #333;
 }
 
+.filters {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.filters input,
+.filters select {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+.export-section {
+    margin-bottom: 15px;
+}
+
+.export-btn {
+    background: #059669;
+}
+
+.export-btn:hover {
+    background: #047857;
+}
+
+#transactionList {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+    -webkit-overflow-scrolling: touch;
+}
+
 .transaction {
     display: grid;
-    grid-template-columns: auto 1fr auto auto auto;
-    gap: 15px;
+    grid-template-columns: auto 1fr auto auto;
+    gap: 10px;
     align-items: center;
     padding: 12px;
     background: #f8fafc;
     margin-bottom: 10px;
     border-radius: 8px;
+    position: relative;
+    transition: transform 0.3s ease;
+    touch-action: pan-x;
+}
+
+.transaction.sliding {
+    cursor: grab;
+}
+
+.transaction.sliding::after {
+    content: 'Slide to delete →';
+    position: absolute;
+    right: -100px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ef4444;
+    font-size: 0.8rem;
 }
 
 .transaction.income {
@@ -155,15 +216,62 @@ button:hover {
 
 @media (max-width: 480px) {
     .container {
-        padding: 20px;
+        padding: 15px;
+    }
+    
+    .balance p {
+        font-size: 1.8rem;
+        word-break: break-word;
+    }
+    
+    .income p, .expenses p {
+        font-size: 1.4rem;
+        word-break: break-word;
     }
     
     .transaction {
-        grid-template-columns: 1fr auto;
+        grid-template-columns: 1fr 1fr;
+        font-size: 0.85rem;
+        gap: 10px;
+        padding: 10px;
+    }
+    
+    .transaction span {
+        min-width: 0;
+        word-break: break-word;
+        overflow-wrap: break-word;
+        display: block;
+    }
+    
+    .transaction span:last-of-type {
+        font-weight: 600;
     }
     
     .actions {
         grid-column: span 2;
-        justify-content: flex-end;
+        justify-content: space-between;
+        margin-top: 5px;
     }
+    
+    .edit-btn, .delete-btn {
+        padding: 6px 12px;
+        font-size: 0.85rem;
+    }
+}
+
+.footer {
+    text-align: center;
+    margin-top: 20px;
+    padding: 20px 0;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.footer a {
+    color: #6366f1;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
 }
